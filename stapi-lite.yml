@@ -1,0 +1,22 @@
+version: '3'
+services:
+  strapi:
+    image: node:18-alpine
+    container_name: strapi
+    restart: always
+    user: node
+    working_dir: /opt/app
+    environment:
+      DATABASE_CLIENT: sqlite
+      DATABASE_FILENAME: .tmp/data.db
+      NODE_ENV: development
+    volumes:
+      - ./app:/opt/app
+    ports:
+      - "1337:1337"
+    # O comando abaixo instala o Strapi se a pasta estiver vazia
+    command: sh -c "npx create-strapi-app@latest . --quickstart --no-run && npm run develop"
+    deploy:
+      resources:
+        limits:
+          memory: 650M
