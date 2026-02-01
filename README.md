@@ -36,7 +36,8 @@ netfilter-persistent save: Grava essa regra para que ela não seja apagada ao re
 2. Bash Script de Configuração Completa
 Copie o código abaixo e salve-o como um arquivo chamado setup_server.sh. Nota: Este script resume tudo o que fizemos manualmente até agora.
 
-Bash
+``` bash
+
 #!/bin/bash
 
 # --- 1. ATUALIZAÇÃO DO SISTEMA ---
@@ -78,18 +79,28 @@ sudo docker volume create portainer_data
 sudo docker run -d -p 8000:8000 -p 9443:9443 --name portainer --restart=always -v /var/run/docker.sock:/var/run/docker.sock -v portainer_data:/data portainer/portainer-ce:latest
 
 echo "Configuração finalizada! Acesse https://seu-ip:9443"
+
+```
+
 3. Como usar o script?
 Se você quiser rodar esse script em uma nova instância no futuro, o processo é este:
 
-Crie o arquivo no servidor: nano setup_server.sh
+Crie o arquivo no servidor: 
+
+``` bash
+nano setup_server.sh
+```
 
 Cole o código acima dentro do editor. (Para sair e salvar no nano: Ctrl+O, Enter e Ctrl+X).
 
 Dê permissão de execução ao arquivo:
 
-Bash
+``` bash
 chmod +x setup_server.sh
+```
+
 Execute o script:
 
-Bash
+``` bash
 ./setup_server.sh
+```
